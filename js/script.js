@@ -5,7 +5,7 @@ function setColor(data) {
         else return "<span class='negative'>" + data + "€<span>"
 }
 
-CsvToHtmlTable.init({
+const csvOptions = {
     csv_path: "data/norden_social.csv",
     element: "table-container",
     allow_download: false,
@@ -21,4 +21,7 @@ CsvToHtmlTable.init({
     custom_formatting: [
         [2, setColor]
     ]
-});
+}
+
+CsvToHtmlTable.init(csvOptions);
+initCharts(csvOptions);

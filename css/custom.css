@@ -58,3 +58,7 @@ a:hover {
   padding: 1em;
   color: white;
 }
+
+.chart-container {
+  padding: 10px 30px;
+}
