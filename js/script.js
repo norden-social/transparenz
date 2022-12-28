@@ -23,7 +23,7 @@ const parseCsv = csv => {
   .map(line => [
     new Date(line[0]),
     line[1],
-    parseFloat(line[2].replace(/,/, '.'))
+    parseFloat(line[2])
   ]);
 }
 
@@ -36,7 +36,7 @@ function setColor(data) {
 }
 
 CsvToHtmlTable.init({
-  csv_path: "data/norden_social.csv",
+  csv_path: "data/data.csv",
   element: "table-container",
   allow_download: false,
   csv_options: {
@@ -87,7 +87,7 @@ function setTotalMoney (){
   document.querySelector('.totalmoney').innerHTML = totalMoney;
 }
 
-fetch('data/norden_social.csv')
+fetch('data/data.csv')
 .then(resp => resp.text())
 .then(parseCsv)
 .then(data => {
@@ -115,19 +115,19 @@ fetch('data/norden_social.csv')
     }
   });
 
-  const supportersChart = new Chart(document.getElementById('myChart2').getContext('2d'), {
-    type: 'bar',
-    data: {
-      labels: months,
-      datasets: [
-        {
-          label: "Unterstützer:innen",
-          backgroundColor: barColors["Support"],
-          data: months.map(month => groupedByMonth[month]['Support'].length)
-        }
-      ]
-    }
-  });
+  // const supportersChart = new Chart(document.getElementById('myChart2').getContext('2d'), {
+  //   type: 'bar',
+  //   data: {
+  //     labels: months,
+  //     datasets: [
+  //       {
+  //         label: "Unterstützer:innen",
+  //         backgroundColor: barColors["Support"],
+  //         data: months.map(month => groupedByMonth[month]['Support'].length)
+  //       }
+  //     ]
+  //   }
+  // });
 
   setTotalMoney();
 });
