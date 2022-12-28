@@ -8,11 +8,13 @@ Array.prototype.distinct = function () {
 const barColors = {
   "Serverkosten": 'rgb(153,48,48)',
   "Support": 'rgb(27,115,27)',
-  "Serverspeicher": 'rgba(255,97,2,0.62)',
+  "Deepl": 'rgba(255,97,2,0.62)',
   "Mailjet": 'rgb(176,176,42)',
   "Paypal": 'rgb(83,115,220)',
   "Sonstige Ausgaben": 'rgb(161,24,187)'
 }
+
+let totalMoney = 0;
 
 const parseCsv = csv => {
   return csv.split(/\r?\n/)
@@ -26,6 +28,7 @@ const parseCsv = csv => {
 }
 
 function setColor(data) {
+  totalMoney += parseFloat(data);
   if (data)
       if (parseFloat(data) > 0)
           return "<span class='positive'>" + data + "€<span>"
@@ -80,6 +83,10 @@ const groupByMonthAndTransactionType = (data) => {
   return groupedByMonth;
 }
 
+function setTotalMoney (){
+  document.querySelector('.totalmoney').innerHTML = totalMoney;
+}
+
 fetch('data/norden_social.csv')
 .then(resp => resp.text())
 .then(parseCsv)
@@ -121,4 +128,6 @@ fetch('data/norden_social.csv')
       ]
     }
   });
+
+  setTotalMoney();
 });
