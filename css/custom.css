@@ -39,6 +39,14 @@ a:hover {
   max-width: 100px;
   margin-left: -2em;
   margin-bottom: -2em;
+  margin-top: 2rem;
+}
+
+code {
+  background-color: rgba(255, 255, 255, 0.658);
+  display: block;
+  color: black;
+  padding: 1em;
 }
 
 .negative {
